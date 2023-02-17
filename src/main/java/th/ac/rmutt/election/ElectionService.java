@@ -47,13 +47,11 @@ public class ElectionService {
 		for(Election ls:list) {
 			int Id = ls.getElecId();
 			List<ElecWCandidate> ecList = entityManager
-					.createQuery("from ElecWCandidate es where es.election.elecId = :Id ", ElecWCandidate.class).setParameter("Id", Id)
+					.createQuery("from ElecWCandidate ec where ec.election.elecId = :Id and ec.candidate.candiStatus = 1", ElecWCandidate.class).setParameter("Id", Id)
 					.getResultList();
 			ls.setCountCandi(ecList.size());
 		}
 		return Response.ok(list).build();
 	}
-	
-	
 
 	}

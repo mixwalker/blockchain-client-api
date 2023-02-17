@@ -29,6 +29,8 @@ public class Election {
 	private Date elecEnddate;
 	@Column(unique = false, name = "elec_status")
 	private Integer elecStatus;
+	@Column(unique = false, name = "elec_onvote")
+	private Boolean elecOnvote;
 	@Column(length = 3, unique = false, name = "elec_countcandi")
 	private Integer countCandi;
 	@Column(unique = false, name = "elec_register")
@@ -72,6 +74,13 @@ public class Election {
 	
 	public void setElecStatus(Integer elecStatus) {
 		this.elecStatus = elecStatus;
+	}
+	
+	public Boolean getElecOnvote() {
+		return elecOnvote;
+	}
+	public void setElecOnvote(Boolean elecOnvote) {
+		this.elecOnvote = elecOnvote;
 	}
 	public Integer getCountCandi() {
 		return countCandi;

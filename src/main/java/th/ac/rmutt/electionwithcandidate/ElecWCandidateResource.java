@@ -43,6 +43,13 @@ public class ElecWCandidateResource {
 		return list;
 	}
 	
+	@GET
+	@Path("findbyelectionwith_approve/{Id}")
+	public List<ElecWCandidate> getByElectionWithApprove(@PathParam("Id") Integer Id) {
+		List<ElecWCandidate> list = elecCandiService.getCandidateApprove(Id);
+		return list;
+	}
+	
 	@POST
 	@Transactional
 	public Response create(ElecWCandidate elecWCandi) {

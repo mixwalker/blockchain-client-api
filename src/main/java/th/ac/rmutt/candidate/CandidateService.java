@@ -45,6 +45,9 @@ public class CandidateService {
 		if(candidate.getCandiId() != null) {
 			candidate.setCandiId(null);
 		}
+		if(candidate.getCandiStatus() == null) {
+			candidate.setCandiStatus("0");
+		}
 		for(CandidateExp candiExp:candidate.getCandiExpList()) {
 			createCandiExp(candiExp,candidate);
 		}

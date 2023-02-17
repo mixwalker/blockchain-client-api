@@ -21,14 +21,21 @@ public class ElecWCandidateService {
 	
 	public List<ElecWCandidate> getByCandidate(Integer Id) {
 		List<ElecWCandidate> list = entityManager
-				.createQuery("from ElecWCandidate es where es.candidate.candiId = :Id ", ElecWCandidate.class)
+				.createQuery("from ElecWCandidate ec where ec.candidate.candiId = :Id ", ElecWCandidate.class)
 				.setParameter("Id", Id).getResultList();
 		return list;
 	}
 
 	public List<ElecWCandidate> getByElection(Integer Id) {
 		List<ElecWCandidate> list = entityManager
-				.createQuery("from ElecWCandidate es where es.election.elecId = :Id ", ElecWCandidate.class).setParameter("Id", Id)
+				.createQuery("from ElecWCandidate ec where ec.election.elecId = :Id ", ElecWCandidate.class).setParameter("Id", Id)
+				.getResultList();
+		return list;
+	}
+	
+	public List<ElecWCandidate> getCandidateApprove(Integer Id) {
+		List<ElecWCandidate> list = entityManager
+				.createQuery("from ElecWCandidate ec where ec.election.elecId = :Id and ec.candidate.candiStatus = 1", ElecWCandidate.class).setParameter("Id", Id)
 				.getResultList();
 		return list;
 	}
