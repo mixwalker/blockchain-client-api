@@ -38,8 +38,6 @@ INSERT INTO election_student(es_id,elec_id,student_id)
 VALUES (2,2,2);
 INSERT INTO election_student(es_id,elec_id,student_id)
 VALUES (3,1,3);
-INSERT INTO election_student(es_id,elec_id,student_id)
-VALUES (3,1,4);
 
 INSERT INTO election_candidate(ec_id,elec_id,candidate_id)
 VALUES (1,1,1);

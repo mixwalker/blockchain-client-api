@@ -29,6 +29,8 @@ public class Candidate {
 	private String candiImage;
 	@Column(length = 1, unique = false, name = "candi_status")
 	private String candiStatus;
+	@Column(length = 10, unique = false, name = "candi_phone")
+	private String candiPhone;
 	@Column(unique = false, name = "candi_regisdate")
 	private Date regisDate;
 	
@@ -85,6 +87,13 @@ public class Candidate {
 	public void setCandiStatus(String candiStatus) {
 		this.candiStatus = candiStatus;
 	}
+	public String getCandiPhone() {
+		return candiPhone;
+	}
+	public void setCandiPhone(String candiPhone) {
+		this.candiPhone = candiPhone;
+	}
+	
 	
 	
 	

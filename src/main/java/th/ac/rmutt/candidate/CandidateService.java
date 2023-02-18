@@ -23,7 +23,7 @@ import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 @ApplicationScoped
 public class CandidateService {
-	
+
 	@Inject
 	EntityManager entityManager;
 
@@ -31,7 +31,7 @@ public class CandidateService {
 		List<Candidate> list = entityManager.createQuery("from Candidate c", Candidate.class).getResultList();
 		return list;
 	}
-	
+
 	public Candidate getSingle(Integer id) {
 		Candidate entity = entityManager.find(Candidate.class, id);
 
@@ -42,21 +42,21 @@ public class CandidateService {
 	}
 
 	public Response create(Candidate candidate) {
-		if(candidate.getCandiId() != null) {
+		if (candidate.getCandiId() != null) {
 			candidate.setCandiId(null);
 		}
-		if(candidate.getCandiStatus() == null) {
+		if (candidate.getCandiStatus() == null) {
 			candidate.setCandiStatus("0");
 		}
-		for(CandidateExp candiExp:candidate.getCandiExpList()) {
-			createCandiExp(candiExp,candidate);
+		for (CandidateExp candiExp : candidate.getCandiExpList()) {
+			createCandiExp(candiExp, candidate);
 		}
 		entityManager.persist(candidate);
 		return Response.status(Status.CREATED).entity(candidate).build();
 	}
-	
-	private CandidateExp createCandiExp (CandidateExp candiExp,Candidate candidate) {
-		if(candiExp.getCanExpId() != null) {
+
+	private CandidateExp createCandiExp(CandidateExp candiExp, Candidate candidate) {
+		if (candiExp.getCanExpId() != null) {
 			candiExp.setCanExpId(null);
 		}
 		candiExp.setCandidate(candidate);
@@ -65,31 +65,53 @@ public class CandidateService {
 		entityManager.persist(candiExp);
 		return candiExp;
 	}
-	
-    public Response upload(@MultipartForm MultipartFormDataInput input) throws Exception {
-        final Map<String, List<InputPart>> multipart = input.getFormDataMap();
-        final String fileName = input.getFormDataPart("fileName", String.class, null);
-        final List<InputPart> files = multipart.get("files");
-        for (final InputPart inputPart : files) {
-            final java.nio.file.Path tempFile = inputPart.getBody(File.class, null).toPath();
-            final java.nio.file.Path file = Paths.get("src/main/assets/images/" + fileName);
-            if (Files.exists(file)) {
-                Files.delete(file);
-            }
-            Files.copy(tempFile, file);
-        }
-        return Response.ok().build();
-    }
 
-    public Response readFile(@PathParam(value = "fileName") String fileName) throws Exception {
-        final java.nio.file.Path file = Paths.get("src/main/assets/images/" + fileName);
-        if (Files.exists(file)) {
-            final StreamingOutput stream = (OutputStream output) -> Files.copy(file, output);
-            return Response.ok(stream)
-                    .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-                    .build();
-        }
-        return Response.noContent().build();
-    }
-	
+	public Response upload(@MultipartForm MultipartFormDataInput input) throws Exception {
+		final Map<String, List<InputPart>> multipart = input.getFormDataMap();
+		final String fileName = input.getFormDataPart("fileName", String.class, null);
+		final List<InputPart> files = multipart.get("files");
+		for (final InputPart inputPart : files) {
+			final java.nio.file.Path tempFile = inputPart.getBody(File.class, null).toPath();
+			final java.nio.file.Path file = Paths.get("src/main/assets/images/" + fileName);
+			if (Files.exists(file)) {
+				Files.delete(file);
+			}
+			Files.copy(tempFile, file);
+		}
+		return Response.ok().build();
+	}
+
+	public Response readFile(@PathParam(value = "fileName") String fileName) throws Exception {
+		final java.nio.file.Path file = Paths.get("src/main/assets/images/" + fileName);
+		if (Files.exists(file)) {
+			final StreamingOutput stream = (OutputStream output) -> Files.copy(file, output);
+			return Response.ok(stream).header(HttpHeaders.CONTENT_TYPE, "image/jpeg").build();
+		}
+		return Response.noContent().build();
+	}
+
+	public Response update(Integer id, Candidate candidate) {
+		Candidate entity = entityManager.find(Candidate.class, id);
+		if (entity == null) {
+			throw new WebApplicationException("Candidate with id of " + id + " does not exist.", Status.NOT_FOUND);
+		}
+		for (CandidateExp candiExp : candidate.getCandiExpList()) {
+			editCandiExp(candiExp);
+		}
+		entity.setCandiPhone(candidate.getCandiPhone());
+		entity.setCandiParty(candidate.getCandiParty());
+		entity.setCandiImage(candidate.getCandiImage());
+		return Response.ok(entity).build();
+	}
+
+	private Response editCandiExp(CandidateExp candiExp) {
+		CandidateExp entity = entityManager.find(CandidateExp.class, candiExp.getCanExpId());
+		if (entity == null) {
+			throw new WebApplicationException("CandidateExp with id of " + candiExp.getCanExpId() + " does not exist.", Status.NOT_FOUND);
+		}
+		entity.setPosition(candiExp.getPosition());
+		entity.setYears(candiExp.getYears());
+		return Response.ok(entity).build();
+	}
+
 }
