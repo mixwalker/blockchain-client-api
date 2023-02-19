@@ -8,10 +8,10 @@ VALUES (3,'1162109050416','1234','นาย','อภิสิทธิ์','น�
 INSERT INTO students(student_id,student_code,password,firstname,lastname,email,role) 
 VALUES (1,'admin','admin1234','admin','Sorrawit','mixwalkerz@gmail.com','admin');
 
-INSERT INTO election(elec_id,elec_name,elec_detail,elec_startdate,elec_enddate,elec_register)
-VALUES (1,'การเลือกตั้งสมาชิกสโมสรนักศึกษา','การเลือกตั้งสมาชิกสโมสรนักศึกษาสำหรับคณะวิทยาศาสตร์และเทคโนโลยี ปีการศึกษา 2565',sysdate,sysdate,1);
-INSERT INTO election(elec_id,elec_name,elec_detail,elec_startdate,elec_enddate,elec_register)
-VALUES (2,'การเลือกตั้งนายกสโมสรนักศึกษา','การเลือกตั้งสมาชิกสโมสรนักศึกษาสำหรับคณะวิทยาศาสตร์และเทคโนโลยี ปีการศึกษา 2565',sysdate,sysdate,1);
+INSERT INTO election(elec_id,elec_name,elec_detail,elec_startdate,elec_enddate,elec_register,elec_onvote,elec_images)
+VALUES (1,'การเลือกตั้งสมาชิกสโมสรนักศึกษา','การเลือกตั้งสมาชิกสโมสรนักศึกษาสำหรับคณะวิทยาศาสตร์และเทคโนโลยี ปีการศึกษา 2565',sysdate,sysdate,1,true,'electionimagestest.png');
+INSERT INTO election(elec_id,elec_name,elec_detail,elec_startdate,elec_enddate,elec_register,elec_onvote,elec_images)
+VALUES (2,'การเลือกตั้งนายกสโมสรนักศึกษา','การเลือกตั้งสมาชิกสโมสรนักศึกษาสำหรับคณะวิทยาศาสตร์และเทคโนโลยี ปีการศึกษา 2565',sysdate,sysdate,1,true,'electionimagestest.png');
 
 INSERT INTO candidate(candidate_id,candi_no,candi_party,candi_regisdate)
 VALUES (1,'007','ก้าวไกล','2023-02-06');

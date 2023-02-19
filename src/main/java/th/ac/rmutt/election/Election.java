@@ -23,6 +23,8 @@ public class Election {
 	private String elecName;
 	@Column(length = 255, unique = false, name = "elec_detail")
 	private String elecDetail;
+	@Column(length = 255, unique = false, name = "elec_images")
+	private String elecImages;
 	@Column(unique = false, name = "elec_startdate")
 	private Date elecStartdate;
 	@Column(unique = false, name = "elec_enddate")
@@ -30,7 +32,7 @@ public class Election {
 	@Column(unique = false, name = "elec_status")
 	private Integer elecStatus;
 	@Column(unique = false, name = "elec_onvote")
-	private Boolean elecOnvote;
+	private Boolean elecOnVote;
 	@Column(length = 3, unique = false, name = "elec_countcandi")
 	private Integer countCandi;
 	@Column(unique = false, name = "elec_register")
@@ -56,6 +58,19 @@ public class Election {
 	public void setElecDetail(String elecDetail) {
 		this.elecDetail = elecDetail;
 	}
+	
+	public String getElecImages() {
+		return elecImages;
+	}
+	public void setElecImages(String elecImages) {
+		this.elecImages = elecImages;
+	}
+	public Boolean getElecOnVote() {
+		return elecOnVote;
+	}
+	public void setElecOnVote(Boolean elecOnVote) {
+		this.elecOnVote = elecOnVote;
+	}
 	public Date getElecStartdate() {
 		return elecStartdate;
 	}
@@ -76,12 +91,6 @@ public class Election {
 		this.elecStatus = elecStatus;
 	}
 	
-	public Boolean getElecOnvote() {
-		return elecOnvote;
-	}
-	public void setElecOnvote(Boolean elecOnvote) {
-		this.elecOnvote = elecOnvote;
-	}
 	public Integer getCountCandi() {
 		return countCandi;
 	}

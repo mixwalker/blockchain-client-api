@@ -1,15 +1,12 @@
 package th.ac.rmutt.electionwithstudent;
 
 import java.util.List;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
-
 
 @ApplicationScoped
 public class ElecWStudentService {
@@ -22,9 +19,16 @@ public class ElecWStudentService {
 		return list;
 	}
 	
-	public List<ElecWStudent> getByStudent(Integer Id) {
+	public List<ElecWStudent> getAllByStudent(Integer Id) {
 		List<ElecWStudent> list = entityManager
-				.createQuery("from ElecWStudent es where es.student.studentId = :Id ", ElecWStudent.class)
+				.createQuery("from ElecWStudent es where es.student.studentId = :Id", ElecWStudent.class)
+				.setParameter("Id", Id).getResultList();
+		return list;
+	}
+	
+	public List<ElecWStudent> getOnVoteByStudent(Integer Id) {
+		List<ElecWStudent> list = entityManager
+				.createQuery("from ElecWStudent es where es.student.studentId = :Id and es.election.elecOnVote = true", ElecWStudent.class)
 				.setParameter("Id", Id).getResultList();
 		return list;
 	}

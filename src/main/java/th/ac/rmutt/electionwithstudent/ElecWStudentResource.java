@@ -31,9 +31,16 @@ public class ElecWStudentResource {
 	}
 	
 	@GET
-	@Path("findbystudent/{Id}")
-	public List<ElecWStudent> getByStudent(@PathParam("Id") Integer Id) {
-		List<ElecWStudent> list = elecStuService.getByStudent(Id);
+	@Path("find_allbystudent/{Id}")
+	public List<ElecWStudent> getAllByStudent(@PathParam("Id") Integer Id) {
+		List<ElecWStudent> list = elecStuService.getAllByStudent(Id);
+		return list;
+	}
+	
+	@GET
+	@Path("find_onvotebystudent/{Id}")
+	public List<ElecWStudent> getOnVoteByStudent(@PathParam("Id") Integer Id) {
+		List<ElecWStudent> list = elecStuService.getOnVoteByStudent(Id);
 		return list;
 	}
 	
