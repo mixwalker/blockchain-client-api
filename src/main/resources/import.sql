@@ -24,20 +24,20 @@ INSERT INTO candidate_exp(canexp_id,position,years,candidate_id)
 VALUES (3,'kuyss','24',1);
 
 INSERT INTO candidate(candidate_id,candi_no,candi_party,candi_status,candi_regisdate)
-VALUES (2,'003','พลังประชารัฐ','1',sysdate);
+VALUES (2,'003','วัยรุ่่น RMUTT','1',sysdate);
 INSERT INTO candidate(candidate_id,candi_no,candi_party,candi_status)
-VALUES (3,'007','พลังประชารัฐ','1');
+VALUES (3,'004','เลือดใหม่ RMUTT','1');
 INSERT INTO candidate(candidate_id,candi_no,candi_party)
 VALUES (4,'007','พลังประชารัฐ');
 INSERT INTO candidate(candidate_id,candi_no,candi_party)
 VALUES (5,'007','พลังประชารัฐ');
 
-INSERT INTO election_student(es_id,elec_id,student_id)
-VALUES (1,1,2);	
+INSERT INTO election_student(es_id,elec_id,student_id,elec_voted)
+VALUES (1,1,2,false);	
 INSERT INTO election_student(es_id,elec_id,student_id)
 VALUES (2,2,2);
-INSERT INTO election_student(es_id,elec_id,student_id)
-VALUES (3,1,3);
+INSERT INTO election_student(es_id,elec_id,student_id,elec_voted)
+VALUES (3,1,3,false);
 
 INSERT INTO election_candidate(ec_id,elec_id,candidate_id)
 VALUES (1,1,1);
@@ -53,3 +53,5 @@ VALUES (5,1,5);
 
 INSERT INTO student_candidate(sc_id,student_id,candidate_id)
 VALUES (1,2,2);
+INSERT INTO student_candidate(sc_id,student_id,candidate_id)
+VALUES (2,3,3);

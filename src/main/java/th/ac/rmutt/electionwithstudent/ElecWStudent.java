@@ -30,6 +30,9 @@ public class ElecWStudent {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "elec_id")
 	private Election election;
+	
+	@Column(unique = false, name = "elec_voted")
+	private Boolean Voted;
 
 	public Integer getEsId() {
 		return esId;
@@ -54,6 +57,16 @@ public class ElecWStudent {
 	public void setElection(Election election) {
 		this.election = election;
 	}
+
+	public Boolean getVoted() {
+		return Voted;
+	}
+
+	public void setVoted(Boolean voted) {
+		Voted = voted;
+	}
+	
+	
 	
 	
 }
