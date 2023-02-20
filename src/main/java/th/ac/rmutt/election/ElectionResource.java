@@ -41,12 +41,12 @@ public class ElectionResource {
 		return list;
 	}
 	
-//	@GET
-//	@Path("on_vote")
-//	public List<Election> getOnVote() {
-//		List<Election> list = elecService.getOnVote();
-//		return list;
-//	}
+	@GET
+	@Path("on_vote")
+	public List<Election> getOnVote() {
+		List<Election> list = elecService.getOnVote();
+		return list;
+	}
 	
 	
 	@GET

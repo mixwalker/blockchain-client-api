@@ -40,10 +40,10 @@ public class ElectionService {
 		return list;
 	}
 	
-//	public List<Election> getOnVote() {
-//		List<Election> list = entityManager.createQuery("from Election e where e.elecOnVote = true", Election.class).getResultList();
-//		return list;
-//	}
+	public List<Election> getOnVote() {
+		List<Election> list = entityManager.createQuery("from Election e where e.elecOnVote = true", Election.class).getResultList();
+		return list;
+	}
 	
 	public Election getSingle(Integer id) {
 		Election entity = entityManager.find(Election.class, id);
